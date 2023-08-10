@@ -1,0 +1,73 @@
+
+In your current setup, it's not advisable to directly create an instance of the NewPositionPage class inside the MapPageAppBar constructor because it's not designed to work that way. Instead, you should use the navigation system provided by Flutter to navigate to the NewPositionPage when needed and pass the latitude and longitude values dynamically.
+
+Here's how you should approach this:
+
+Remove NewPositionPage Instance from AppBar:
+Remove the creation of NewPositionPage instance from the MapPageAppBar constructor, as it's not the right place to create it.
+
+Pass Position When Navigating:
+When you navigate to the NewPositionPage from the app bar, you can pass the newPosition directly.
+
+Receive Position in NewPositionPage:
+Receive the position in the NewPositionPage and use it to display the information and pass it back when needed.
+
+Show SnackBar:
+In the MapPageAppBar, you can show the SnackBar when navigating back from the NewPositionPage with the returned position.
+
+Here's a basic guideline of how to achieve this:
+
+dart
+Copy code
+class MapPageAppBar extends AppBar {
+  final BuildContext context;
+  final LatLng newPosition;
+
+  MapPageAppBar(this.context, this.newPosition)
+      : super(
+            // ... Your existing code ...
+            leading: InkWell(
+                onTap: () async {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Going back to the previous page!'),
+                    ),
+                  );
+                },
+                // ... Your existing code ...
+                )
+            );
+}
+
+class MapScreen extends StatefulWidget {
+  const MapScreen({super.key});
+
+  @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  // ... Your existing code ...
+
+  @override
+  Widget build(BuildContext context) {
+    // ... Your existing code ...
+
+    return BlocProvider(
+      create: (context) => MapCubit(
+        kGooglePlexMarker: _kGooglePlexMarker,
+        initialMarkerPosition: _kGooglePlexMarker.position,
+      ),
+      child: Scaffold(
+        appBar: MapPageAppBar(context, _kGooglePlexMarker.position), // Pass the position here
+        body: SafeArea(
+          child: Stack(
+            // ... Your existing code ...
+          ),
+        ),
+      ),
+    );
+  }
+}
+In this approach, the MapPageAppBar doesn't need to create a NewPositionPage instance, and the position is passed directly when navigating to the NewPositionPage.
