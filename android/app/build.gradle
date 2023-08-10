@@ -54,9 +54,9 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-         manifestPlaceholders = [
-            GOOGLE_MAPS_API_KEY: "AIzaSyBX3PJbhFJh3eRr-VmE0AP6A4jwfxvPoko"
-        ]
+        //  manifestPlaceholders = [
+        //     GOOGLE_MAPS_API_KEY: "AIzaSyBX3PJbhFJh3eRr-VmE0AP6A4jwfxvPoko"
+        // ]
     }
 
     buildTypes {

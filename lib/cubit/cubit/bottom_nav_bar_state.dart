@@ -1,5 +1,5 @@
 part of 'bottom_nav_bar_cubit.dart';
-
+//import 'package:equatable/equatable.dart';
 abstract class BottomNavBarState extends Equatable {
   const BottomNavBarState();
 

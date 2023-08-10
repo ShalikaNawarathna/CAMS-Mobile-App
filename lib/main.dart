@@ -4,18 +4,17 @@ import 'package:camps_demo/view/widget/Map/cubit/map_cubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+//import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'cubit/cubit/login_cubit.dart';
 import 'login_page.dart';
 
-Future<void> main() async {
-
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
 
-   await dotenv.load();
-  String apiKey = dotenv.env['GOOGLE_MAPS_API_KEY']!;
+  //  await dotenv.load();
+  // String apiKey = dotenv.env['GOOGLE_MAPS_API_KEY']!;
 
   //HttpOverrides.global = MyHttpOverrides();
   runApp(MyApp(
